@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>FRESCO Study | Professional Clinical Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-purple: #4a2d7b;
+            --brand-purple-light: #f6f4f9;
+            --text-dark: #1e272e;
+            --text-muted: #57606f;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --header-h: 65px; /* Precision height */
+        }
+
+        /* --- Expert Reset & Smooth Scrolling --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Header: Fixed Height & Sophisticated Masking --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--header-h);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .study-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--brand-purple);
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        /* The Vivid Fading Banner */
+        .banner-mask {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 65%;
+            height: 100%;
+            background-image: url('banner.jpg.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 5;
+            /* The "Expert Edge" Gradient Mask */
+            mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%);
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%);
+        }
+
+        /* --- Main Layout: Adaptive Grid --- */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 24px 120px 24px; /* Space for footer */
+        }
+
+        @media (min-width: 1024px) {
+            .layout-grid {
+                grid-template-columns: 1fr 320px;
+            }
+        }
+
+        /* --- Content Styling --- */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #edf2f7;
+        }
+
+        .main-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--brand-purple);
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-vivid-box {
+            width: 100%;
+            min-height: 350px;
+            background: #fdfdfd;
+            border: 1px dashed #cbd5e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        /* --- Sidebar & ISI --- */
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .product-logo { font-size: 2rem; font-weight: 600; color: var(--brand-purple); line-height: 1; }
+        .product-sub { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+        .isi-panel {
+            background: var(--brand-purple-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--brand-purple);
+        }
+
+        .isi-panel h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--brand-purple);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .isi-text { font-size: 0.8rem; color: var(--text-dark); }
+
+        /* --- Footer: Mobile Swipe + Desktop Center --- */
+        .bottom-navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-top: 1px solid #e2e8f0;
+            padding: 12px 0;
+            z-index: 2000;
+        }
+
+        .nav-scroller {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding: 0 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .nav-scroller::-webkit-scrollbar { display: none; }
+
+        @media (min-width: 1024px) {
+            .nav-scroller { justify-content: center; }
+        }
+
+        .nav-pill {
+            padding: 8px 18px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-pill:hover { background: #e2e8f0; }
+        .nav-pill.active {
+            background: var(--brand-purple);
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(74, 45, 123, 0.2);
+        }
+
+        /* --- Global Image Sharpness --- */
+        img { max-width: 100%; height: auto; display: block; }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="study-logo">FRESCO Study</div>
+        </div>
+        <div class="banner-mask"></div>
+    </header>
+
+    <div class="layout-grid">
+        <main class="main-content">
+            <h1>Clinical Trial Efficacy Results</h1>
+            <div class="chart-vivid-box">
+                [ High-Definition Interactive Content ]
+            </div>
+            <p style="margin-top: 24px; font-weight: 300;">
+                Statistical analysis demonstrates high clinical significance across primary endpoints. 
+                Navigate through the sections below to explore the FRESCO-2 dataset.
+            </p>
+        </main>
+
+        <aside class="sidebar">
+            <div class="branding">
+                <div class="product-logo">Fruzaqla&reg;</div>
+                <div class="product-sub">fruquintinib capsules 5mg / 1mg</div>
+            </div>
+            <div class="isi-panel">
+                <h4>Important Safety Information</h4>
+                <div class="isi-text">
+                    <p><strong>WARNINGS:</strong> Impaired Wound Healing. FRUZAQLA has the potential to adversely affect wound healing. Do not administer for at least 2 weeks prior to surgery.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="bottom-navigation">
+        <div class="nav-scroller">
+            <div class="nav-pill">Home</div>
+            <div class="nav-pill">Unmet Need</div>
+            <div class="nav-pill">FRESCO-2</div>
+            <div class="nav-pill">Efficacy: OS</div>
+            <div class="nav-pill active">FRESCO Results</div>
+            <div class="nav-pill">Safety</div>
+            <div class="nav-pill">ISI/Ref</div>
+        </div>
+    </footer>
+
+</body>
+</html>

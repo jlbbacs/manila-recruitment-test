@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLB | Clinical Design Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #4a2d7b;
+            --brand-accent: #97c05c;
+            --text-main: #1a1c1e;
+            --text-secondary: #64748b;
+            --bg-body: #f1f5f9;
+            --glass: rgba(255, 255, 255, 0.8);
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            /* Font Variable */
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: radial-gradient(at 0% 0%, rgba(74, 45, 123, 0.05) 0px, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(151, 192, 92, 0.05) 0px, transparent 50%);
+        }
+
+        /* --- Revamped Gradient Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(90deg, #4a2d7b 0%, #2a1a46 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(74, 45, 123, 0.15);
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .study-logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            text-transform: uppercase; /* Looks great in Montserrat */
+        }
+
+        .header-edition {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .banner-mask {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 45%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+            mask-image: linear-gradient(to left, black, transparent);
+            -webkit-mask-image: linear-gradient(to left, black, transparent);
+            pointer-events: none;
+        }
+
+        /* --- Main Layout --- */
+        .layout-wrapper {
+            max-width: 1200px;
+            margin: 60px auto 100px;
+            padding: 0 24px;
+        }
+
+        .hero-section {
+            margin-bottom: 48px;
+        }
+
+        .hero-section h1 {
+            font-weight: 800;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--brand-primary);
+            margin-bottom: 12px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-section .badge {
+            display: inline-block;
+            background: var(--brand-accent);
+            color: var(--brand-primary);
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 6px 16px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* --- Navigation Grid --- */
+        .dashboard-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .nav-card {
+            text-decoration: none;
+            padding: 32px;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--card-shadow);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(74, 45, 123, 0.1);
+            border-color: var(--brand-primary);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-body);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-primary);
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .nav-card:hover .card-icon {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .card-label {
+            font-weight: 700;
+            color: var(--brand-primary);
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--brand-accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* --- Footer --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            background: var(--brand-primary);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 100px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 640px) {
+            .hero-section { text-align: center; }
+            .dashboard-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <div class="study-logo">HTML Activity</div>
+            <div class="header-edition">2025 Edition</div>
+        </div>
+        <div class="banner-mask"></div>
+    </header>
+
+    <div class="layout-wrapper">
+        <section class="hero-section">
+            
+            <h1>Joseph Lester Bacsarsa</h1>
+        </section>
+
+        <main class="dashboard-links">
+            <a href="/design1.html" class="nav-card">
+                <div class="card-icon">01</div>
+                <div class="card-content">
+                    <div class="card-label">Design 1</div>
+                </div>
+                <div class="card-footer">VIEW DESIGN →</div>
+            </a>
+
+            <a href="/design2.html" class="nav-card">
+                <div class="card-icon">02</div>
+                <div class="card-content">
+                    <div class="card-label">Design 2</div>
+                </div>
+                <div class="card-footer">VIEW DESIGN →</div>
+            </a>
+
+            <a href="/design3.html" class="nav-card">
+                <div class="card-icon">03</div>
+                <div class="card-content">
+                    <div class="card-label">Design 3</div>
+                </div>
+                <div class="card-footer">VIEW DESIGN →</div>
+            </a>
+
+            <a href="/design4.html" class="nav-card">
+                <div class="card-icon">04</div>
+                <div class="card-content">
+                    <div class="card-label">Design 4</div>
+                </div>
+                <div class="card-footer">VIEW DESIGN →</div>
+            </a>
+        </main>
+    </div>
+
+    <footer class="bottom-nav">
+        © 2025 JLB-BACS | All Rights Reserved
+    </footer>
+
+</body>
+</html>

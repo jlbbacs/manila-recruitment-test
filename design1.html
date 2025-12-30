@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRESCO Study - Professional Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-purple: #4a2d7b;
+            --brand-green: #97c05c;
+            --brand-blue: #008eb4;
+            --text-dark: #1a1a1a;
+            --isi-gray: #444;
+            --border-light: #d1d5db;
+            --header-h: 80px;
+            --footer-h: 70px;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Banner --- */
+        .top-container {
+            display: flex;
+            width: 100%;
+            height: var(--header-h);
+            position: relative;
+            z-index: 1000;
+            background: #fff;
+        }
+
+        header {
+            background-color: var(--brand-purple);
+            color: white;
+            padding: 0 40px 0 20px;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            border-bottom-right-radius: 40px;
+            z-index: 10;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .top-banner-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 75%;
+            height: 100%;
+            background-image: url('banner.jpg.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%), 
+                                linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 40%), 
+                        linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-composite: source-in;
+            mask-composite: intersect;
+        }
+
+        /* --- Elegant Hamburger Button --- */
+        /* --- Refined Professional Hamburger Button --- */
+        .menu-toggle {
+            display: none; /* Stays hidden until mobile media query */
+            position: fixed;
+            right: 20px;
+            top: 18px;
+            z-index: 3000;
+            /* Professional Transparency (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(240, 235, 235, 0.722);
+            transform: translateY(-1px);
+        }
+
+        .hamburger-box {
+            width: 22px;
+            height: 16px;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            display: block;
+            width: 100%;
+            height: 2px; /* Thinner for a more professional look */
+            background-color: var(--brand-purple);
+            position: absolute;
+            transition: var(--transition);
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .hamburger-inner::before, .hamburger-inner::after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-purple);
+            position: absolute;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Spacing for a cleaner look */
+        .hamburger-inner::before { top: -7px; }
+        .hamburger-inner::after { top: 7px; }
+
+        /* --- Animation State --- */
+        .menu-toggle.active {
+            background: rgba(255, 255, 255, 0.1); /* Very faint when menu is open */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        .menu-toggle.active .hamburger-inner { background-color: transparent; }
+        
+        /* Change icon to White when active to stand out against the purple menu */
+        .menu-toggle.active .hamburger-inner::before { 
+            transform: rotate(45deg); 
+            top: 0; 
+            background-color: #fff; 
+        }
+        .menu-toggle.active .hamburger-inner::after { 
+            transform: rotate(-45deg); 
+            top: 0; 
+            background-color: #fff; 
+        }
+
+        /* Ensure the toggle is visible in mobile view */
+        @media (max-width: 900px) {
+            .menu-toggle { display: flex; }
+        }
+
+        .hamburger-box {
+            width: 20px;
+            height: 14px;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: var(--brand-purple);
+            position: absolute;
+            transition: var(--transition);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger-inner::before, .hamburger-inner::after {
+            content: "";
+            width: 20px;
+            height: 2px;
+            background-color: var(--brand-purple);
+            position: absolute;
+            transition: var(--transition);
+        }
+
+        .hamburger-inner::before { top: -6px; }
+        .hamburger-inner::after { top: 6px; }
+
+        /* Animation to X */
+        .menu-toggle.active {
+            background: transparent;
+            box-shadow: none;
+        }
+        .menu-toggle.active .hamburger-inner { background-color: transparent; }
+        .menu-toggle.active .hamburger-inner::before { transform: rotate(45deg); top: 0; background-color: white; }
+        .menu-toggle.active .hamburger-inner::after { transform: rotate(-45deg); top: 0; background-color: white; }
+
+        /* --- Dark Backdrop Overlay --- */
+        #menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1500;
+            transition: var(--transition);
+        }
+        #menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* --- Main Layout --- */
+        .page-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            padding: 20px 80px;
+            gap: 40px;
+            position: relative;
+        }
+
+        /* Nav Arrows */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 70px;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+            border-radius: 8px;
+            color: var(--brand-purple);
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .arrow-left { left: 15px; }
+        .arrow-right { right: 15px; }
+
+        main { flex: 2; min-width: 0; }
+
+        /* --- Sidebar --- */
+        aside.sidebar {
+            flex: 1;
+            max-width: 320px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #f0f0f0;
+        }
+
+        .brand-logo { font-size: 2rem; font-weight: 700; color: #333; }
+        .brand-logo span { color: var(--brand-purple); }
+        .brand-sub { font-size: 0.85rem; color: #666; font-weight: 600; }
+
+        .isi-box { background: #fdfdfd; border: 1px solid #eee; padding: 15px; border-radius: 12px; }
+        .isi-title { color: var(--brand-purple); font-weight: 700; font-size: 0.8rem; margin-bottom: 8px; }
+        .isi-content { font-size: 0.75rem; line-height: 1.5; color: var(--isi-gray); }
+
+        /* --- Footer Navigation --- */
+        footer {
+            display: flex;
+            background-color: var(--brand-purple);
+            height: var(--footer-h);
+            z-index: 1100;
+            transition: var(--transition);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .nav-item:hover { background: rgba(255,255,255,0.1); }
+        .active-tab { background: var(--brand-blue); position: relative; }
+
+        /* --- Responsive Logic --- */
+        @media (max-width: 900px) {
+            .menu-toggle { display: flex; }
+            .page-wrapper { flex-direction: column; padding: 20px 15px; }
+            .nav-arrow { top: 30%; height: 50px; width: 35px; }
+            
+            aside.sidebar { 
+                position: relative; max-width: 100%; border-left: none; padding: 0; 
+                order: 2; margin-top: 30px;
+            }
+
+            footer {
+                position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+                flex-direction: column; padding-top: 80px; z-index: 2000;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            }
+            footer.active { right: 0; }
+            .nav-item { 
+                border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); 
+                flex: none; height: 60px; justify-content: flex-start; padding-left: 30px;
+                opacity: 0; transform: translateX(20px);
+            }
+            footer.active .nav-item { opacity: 1; transform: translateX(0); transition: var(--transition); }
+            
+            /* Staggered entrance */
+            .nav-item:nth-child(1) { transition-delay: 0.1s; }
+            .nav-item:nth-child(2) { transition-delay: 0.15s; }
+            .nav-item:nth-child(3) { transition-delay: 0.2s; }
+            .nav-item:nth-child(4) { transition-delay: 0.25s; }
+            .nav-item:nth-child(5) { transition-delay: 0.3s; }
+            .nav-item:nth-child(6) { transition-delay: 0.35s; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-overlay"></div>
+
+    <div class="top-container">
+        <header>FRESCO Study</header>
+        <button class="menu-toggle" id="menuBtn">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <div class="top-banner-image"></div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="nav-arrow arrow-left">&#10094;</div>
+        <div class="nav-arrow arrow-right">&#10095;</div>
+
+        <main>
+            <h1 style="color: var(--brand-purple); margin-bottom: 15px; font-size: 1.5rem;">FRESCO Trial Results</h1>
+            <div style="width: 100%; height: 300px; border: 1px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #fafafa; color: #999;">
+                [Interactive Study Content]
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="brand-box">
+                <div class="brand-logo">Fruzaqla<span>&reg;</span></div>
+                <div class="brand-sub">(fruquintinib) capsules<br>5 mg • 1 mg</div>
+            </div>
+            <div class="isi-box">
+                <p class="isi-title">IMPORTANT SAFETY INFORMATION</p>
+                <div class="isi-content">
+                    <p><strong>WARNINGS:</strong> Impaired Wound Healing. Do not administer FRUZAQLA for at least 2 weeks prior to surgery.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer id="mobileNav">
+        <div class="nav-item">Home</div>
+        <div class="nav-item">Unmet Need</div>
+        <div class="nav-item" style="background: var(--brand-green);">FRESCO-2</div>
+        <div class="nav-item">Efficacy: OS</div>
+        <div class="nav-item">Efficacy: PFS</div>
+        <div class="nav-item active-tab">FRESCO</div>
+        <div class="nav-item">Safety</div>
+        <div class="nav-item">ISI/Ref</div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('menu-overlay');
+
+        function toggleMenu() {
+            const isOpen = mobileNav.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close menu if a nav item is clicked
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if(mobileNav.classList.contains('active')) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
